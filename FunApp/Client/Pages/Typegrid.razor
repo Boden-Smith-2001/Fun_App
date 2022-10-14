@@ -1,0 +1,76 @@
+﻿@page "/displayTypes"
+@using FunApp.Client.Services
+@using FunApp.Shared
+@using Syncfusion.Blazor.Grids
+@using Syncfusion.Blazor.Popups
+<h2>Pokemon Types</h2>
+<br />
+<div id="ControlRegion">
+    <SfGrid ID="Grid" DataSource="@PokemonTypes" @ref="TypeGrid" AllowPaging="true" AllowResizing="true" AllowGrouping="true" AllowSelection="true" AllowSorting="true" Toolbar="@(new List<string>() { "Add", "Edit", "Delete", "Cancel","Search"})">
+        <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="EditMode.Dialog"></GridEditSettings>
+        <GridPageSettings PageSizes="true"></GridPageSettings>
+        <GridSelectionSettings Type="SelectionType.Multiple"></GridSelectionSettings>
+        <GridEvents OnActionBegin="ActionBeginHandler" TValue="PokemonType"></GridEvents>
+        <GridColumns>
+            <GridColumn Type='ColumnType.CheckBox' Width="50"></GridColumn>
+            <GridColumn Field=@nameof(PokemonType.Id) HeaderText="ID" IsPrimaryKey="true" ValidationRules="@(new ValidationRules{ Required=true })" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+            <GridColumn Field=@nameof(PokemonType.Type) HeaderText="Type" ValidationRules="@(new ValidationRules{ Required=true })" TextAlign="TextAlign.Center" Width="120"></GridColumn>
+        </GridColumns>
+    </SfGrid>
+</div>
+<br />
+
+<style>
+    .ulstyle {
+        margin: 0px;
+        padding-left: 20px;
+        display: inline-block;
+    }
+
+    .list {
+        float: left;
+        line-height: 20px;
+        margin: 10px;
+        min-width: 200px;
+    }
+</style>
+@code {
+    public List<PokemonType> PokemonTypes { get; set; }
+
+    SfGrid<PokemonType> TypeGrid;
+
+    [Inject]
+    public IPokemonTypeService TypeService { get; set; }
+
+    protected async override void OnInitialized()
+    {
+        PokemonTypes = (await TypeService.GetAllTypes()).OrderBy(t => t.Type).ToList();
+        StateHasChanged();
+    }
+
+    //This is the method responsible for CRUD actions with Codes
+    public async void ActionBeginHandler(Syncfusion.Blazor.Grids.ActionEventArgs<PokemonType> Args)
+    {
+        if (Args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Save))
+        {
+            if (Args.Action == "Add")
+            {
+                await TypeService.AddType(Args.Data);
+                PokemonTypes = (await TypeService.GetAllTypes()).ToList();
+                StateHasChanged();
+            }
+            else
+            {
+                await TypeService.UpdateType(Args.Data);
+                PokemonTypes = (await TypeService.GetAllTypes()).ToList();
+                StateHasChanged();
+            }
+        }
+        if (Args.RequestType.Equals(Syncfusion.Blazor.Grids.Action.Delete))
+        {
+            await TypeService.DeleteType(Args.Data.Id);
+            PokemonTypes = (await TypeService.GetAllTypes()).ToList();
+            StateHasChanged();
+        }
+    }
+}

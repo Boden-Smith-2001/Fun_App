@@ -1,0 +1,12 @@
+C:\Users\Boden\Downloads\FunApp\Shared\bin\Debug\net6.0\FunApp.Shared.deps.json
+C:\Users\Boden\Downloads\FunApp\Shared\bin\Debug\net6.0\FunApp.Shared.dll
+C:\Users\Boden\Downloads\FunApp\Shared\bin\Debug\net6.0\FunApp.Shared.pdb
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\FunApp.Shared.csproj.AssemblyReference.cache
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\FunApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\FunApp.Shared.AssemblyInfoInputs.cache
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\FunApp.Shared.AssemblyInfo.cs
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\FunApp.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\FunApp.Shared.dll
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\refint\FunApp.Shared.dll
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\FunApp.Shared.pdb
+C:\Users\Boden\Downloads\FunApp\Shared\obj\Debug\net6.0\ref\FunApp.Shared.dll
